@@ -1,0 +1,7 @@
+services:
+  app:
+    image: ghcr.io/h3llo-cloud/example:latest  # public image for examples
+# You can download your image from GHCR
+    ports:
+      - "80:80"
+    restart: always
