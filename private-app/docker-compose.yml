@@ -30,6 +30,8 @@ services:
       - "80:80"
 
 # Подключение Private Docker Registry
+# Детальная инструкция по созданию токена по ссылке:
+# https://github.com/H3LLO-CLOUD/l1vestack-examples
 x-registry:
   "ghcr.io":
     username: "your username by Githab"
