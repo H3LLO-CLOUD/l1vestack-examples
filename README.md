@@ -13,19 +13,12 @@ docker build -t ghcr.io/{Your login by githab}/{your name}:latest(or another any
 ```
 
 ### step3 :
+### for CHECK
 
 ```bash
-docker login ghcr.io
+docker run -d -p 80:80 --name example-app-container ghcr.io/{Your login by githab}/{your name}:latest
 ```
-### where
-login: Your login by githab
-password: Your token on GitHub, where writing packages is allowed
-_________________________________________________________________________________________
-Be sure to select the checkbox: record packages as in the screen
 
-![Image](https://github.com/user-attachments/assets/bdef16c0-76c3-4c24-8e3e-4002461043f3)
-
-_________________________________________________________________________________________
 ### step4 :
 
 ```bash
@@ -35,18 +28,20 @@ docker login ghcr.io
 login: Your login by githab
 password: Your token on GitHub, where writing packages is allowed
 
+_________________________________________________________________________________________
+Be sure to select the checkbox: record packages as in the screen
+
+![Image](https://github.com/user-attachments/assets/bdef16c0-76c3-4c24-8e3e-4002461043f3)
+
+_________________________________________________________________________________________
+
 
 ### step5 :
 
 ```bash
-docker login ghcr.io
+docker push ghcr.io/{Your login by githab}/{your name}:latest
 ```
 
-### step6 :
-
-```bash
-docker run -d -p 80:80 --name example-app-container ghcr.io/mr-kornev-Alexey/example:latest
-```
 
 
 Enjoy 😚✨
