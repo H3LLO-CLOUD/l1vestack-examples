@@ -7,7 +7,6 @@
 #  Более детальные инструкции доступны по ссылке:
 # https://github.com/H3LLO-CLOUD/l1vestack-examples
 
-
 services:
   app:
     image: ghcr.io/h3llo-cloud/example:latest  # public image for examples
