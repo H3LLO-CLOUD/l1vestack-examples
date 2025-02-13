@@ -20,7 +20,12 @@ docker login ghcr.io
 ### where
 login: Your login by githab
 password: Your token on GitHub, where writing packages is allowed
+_________________________________________________________________________________________
+Be sure to select the checkbox: record packages as in the screen
 
+![Image](https://github.com/user-attachments/assets/bdef16c0-76c3-4c24-8e3e-4002461043f3)
+
+_________________________________________________________________________________________
 ### step4 :
 
 ```bash
