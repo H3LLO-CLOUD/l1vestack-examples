@@ -1,11 +1,16 @@
+
+# Для развертывания собственных контейнеров на платформе L!vestack вам необходимо:
+# - убедитесь, что в корне вашего проекта есть Dockerfile. Если его нет, создайте и настройте в соответствии с требованиями вашего приложения.
+# - соберите Docker-образ
+# - запушьте образ в ghcr (GitHub Container Registry)
+# - вставьте ссылку на образ в конфигурационный файл развертывания.
+#  Более детальные инструкции доступны по ссылке:
+# https://github.com/H3LLO-CLOUD/l1vestack-examples
+
+
 services:
   app:
-    image: ghcr.io/mr-twister-dev/example:latest # public image for examples
-    environment:
-      - PORT=80 # random example
+    image: ghcr.io/h3llo-cloud/example:latest  # public image for examples
     ports:
-      - "80:80"  # random examples
-x-registry:
-  "ghcr.io":
-    username: "your username by Githab"
-    password: "Your token for ghcr"
+      - "80:80"
+    restart: always
