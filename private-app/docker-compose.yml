@@ -1,22 +1,36 @@
 # Для развертывания собственных контейнеров на платформе L!vestack вам необходимо:
-# - убедитесь, что в корне вашего проекта есть Dockerfile. Если его нет, создайте и настройте в соответствии с требованиями вашего приложения.
-# - соберите Docker-образ.
-# - запушьте образ в ghcr (GitHub Container Registry).
-# - вставьте ссылку на образ в конфигурационный файл развертывания.
-# - вставьте username и password (токен) в конфигурационный файл развертывания.
+# убедиться, что в корне вашего проекта есть Dockerfile. Если его нет, создайте и настройте в соответствии с требованиями вашего приложения.
+# https://docs.docker.com/reference/dockerfile/
+# собрать Docker-образ.
+# https://docs.docker.com/reference/cli/docker/buildx/imagetools/create/
+# запушть образ в ghcr или в другой приватный Registry.
+# вставить ссылку на образ в конфигурационный файл развертывания.
+# прописать  username и password (токен) в конфигурационный файл развертывания.
 # ==========================================================
-# Более детальные инструкции доступны по ссылке:
+# Детальные инструкции доступны по ссылке:
 # https://github.com/H3LLO-CLOUD/l1vestack-examples
 # ==========================================================
 
 services:
   app:
+
+    # Монтаж образа
+    # Документация: https://docs.docker.com/engine/reference/commandline/run/
     image: ghcr.io/mr-twister-dev/example:latest # public image for examples
+
+  # Передача в окружение порта
+  # Документация: https://docs.docker.com/reference/cli/docker/container/port/
+
     environment:
-      - PORT=80 # random example
+      - PORT=80
+
+  # Установка внешнего порта, доступного во внутренней сети
+  # Документация: https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/
     ports:
-      - "80:80"  # random examples
+      - "80:80"
+
+# Подключение Private Docker Registry
 x-registry:
   "ghcr.io":
     username: "your username by Githab"
-    password: "Your token for ghcr"
+    password: "your token for ghcr"
