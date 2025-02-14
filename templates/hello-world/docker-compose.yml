@@ -1,0 +1,36 @@
+# ==========================================================
+# Инструкции доступны по ссылке:
+# https://github.com/H3LLO-CLOUD/l1vestack-examples/tree/main/hello-world
+# ==========================================================
+
+services:
+  app:
+
+    # Запускаемый образ
+    # https://docs.docker.com/reference/compose-file/services/#image
+    image: ghcr.io/h3llo-cloud/example:latest  # public image for examples
+
+    # Установка порта, для доступа из внутренней сети проекта
+    # http://app:80
+    # https://docs.docker.com/reference/compose-file/services/#ports
+    ports:
+      - "80:80"
+
+    # Определяем политику, которую платформа применяет при завершении работы контейнера
+    # В данном случае нам нужно чтобы контейнер всегда работал и сам перезапускался
+    # https://docs.docker.com/reference/compose-file/services/#restart
+    restart: always
+
+    deploy:
+    #При ВЭТА тестировании пользователю предоставляется 1CPU, 4Гб RAM, capacity 1Гб на докер-контейнер,
+    #Для оптимизации работы контейнеров можно лимитировать
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4096M
+        reservations:
+          cpus: '0.25'
+          memory: 2048M
+    #При необходимости контейнеры можно дублировать
+      replicas: 2
+

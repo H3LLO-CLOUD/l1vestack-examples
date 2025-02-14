@@ -1,9 +1,0 @@
-services:
-  app:
-    image: ghcr.io/h3llo-cloud/example:latest  # public image for examples
-# You can download your image from GHCR
-# detailed instructions
-# https://github.com/H3LLO-CLOUD/l1vestack-examples
-    ports:
-      - "80:80"
-    restart: always
