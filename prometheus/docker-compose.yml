@@ -1,0 +1,32 @@
+services:
+  prometheus:
+  # Запускаемый образ
+  # https://docs.docker.com/reference/compose-file/services/#image
+    image: prom/prometheus:latest
+    restart: unless-stopped
+  # Установка порта, для доступа из внутренней сети проекта
+  # http://app:9090
+  # https://docs.docker.com/reference/compose-file/services/#ports
+    ports:
+      - "9090:9090"
+
+  grafana:
+  # Запускаемый образ
+  # https://docs.docker.com/reference/compose-file/services/#image
+    image: grafana/grafana:latest
+    restart: unless-stopped
+ # Установка порта, для доступа из внутренней сети проекта
+ # http://app:3000
+ # https://docs.docker.com/reference/compose-file/services/#ports
+    ports:
+      - "3000:3000"
+
+
+  node-exporter:
+  # Запускаемый образ
+    image: prom/node-exporter:latest
+  # Установка порта, для доступа из внутренней сети проекта
+  # http://app:9100
+  # https://docs.docker.com/reference/compose-file/services/#ports
+    ports:
+      - "9100:9100"
