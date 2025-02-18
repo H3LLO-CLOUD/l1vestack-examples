@@ -1,0 +1,8 @@
+.idea
+.temp
+.env*
+node_modules
+.yarn
+!.yarn/releases/*.cjs
+package-lock.json
+dist
