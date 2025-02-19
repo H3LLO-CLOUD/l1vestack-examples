@@ -1,0 +1,13 @@
+services:
+  bitwarden:
+    image: bitwardenrs/server
+    container_name: bitwarden
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./bw-data:/data
+    environment:
+      - SIGNUPS_ALLOWED=true  # Разрешить регистрацию новых пользователей
+      - WEB_VAULT_ENABLED=true  # Включить веб-интерфейс
+      - ADMIN_TOKEN=your_admin_token_here  # Токен для доступа к админке (замените на свой)

@@ -1,0 +1,11 @@
+services:
+  harness:
+    image: harness/harness
+    container_name: opensource
+    restart: always
+    ports:
+      - "3000:3000"  # Веб-интерфейс Harness
+      - "3022:3022"  # Дополнительный порт (например, для SSH или API)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Доступ к Docker-демону на хосте
+      - /tmp/harness:/data  # Папка для хранения данных Harness

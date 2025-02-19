@@ -1,0 +1,28 @@
+services:
+
+  echo-1:
+    image: mendhak/http-https-echo:35
+    environment:
+      - HTTP_PORT=8888
+      - HTTPS_PORT=9999
+    ports:
+      - "8080:8888"
+      - "8443:9999"
+
+  echo-2:
+    image: mendhak/http-https-echo:35
+    environment:
+      - HTTP_PORT=8888
+      - HTTPS_PORT=9999
+    ports:
+      - "8080:8888"
+      - "8443:9999"
+
+  echo-3:
+    image: mendhak/http-https-echo:35
+    environment:
+      - HTTP_PORT=8888
+      - HTTPS_PORT=9999
+    ports:
+      - "8080:8888"
+      - "8443:9999"

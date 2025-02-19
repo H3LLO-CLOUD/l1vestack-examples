@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15
+    container_name: redmine_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: redmine
+      POSTGRES_PASSWORD: redminepass
+      POSTGRES_DB: redmine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redmine:
+    image: redmine:latest
+    container_name: redmine
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8080:3000"  # Web UI
+    environment:
+      - REDMINE_DB_POSTGRES=redmine
+      - REDMINE_DB_USERNAME=redmine
+      - REDMINE_DB_PASSWORD=redminepass
+      - REDMINE_DB_HOST=db
+    volumes:
+      - redmine_data:/usr/src/redmine/files
+
+volumes:
+  db_data:
+  redmine_data:

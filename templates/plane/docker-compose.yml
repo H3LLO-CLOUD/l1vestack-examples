@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:15
+    container_name: plane_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: plane
+      POSTGRES_PASSWORD: plane_pass
+      POSTGRES_DB: plane
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  plane:
+    image: makeplane/plane:latest
+    container_name: plane
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      - DATABASE_URL=postgresql://plane:plane_pass@db:5432/plane
+      - NEXTAUTH_SECRET=your_secret_key
+    volumes:
+      - plane_data:/app/data
+
+volumes:
+  db_data:
+  plane_data:

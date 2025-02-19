@@ -1,0 +1,13 @@
+services:
+  homeassistant:
+    image: homeassistant/home-assistant:stable
+    container_name: homeassistant
+    restart: unless-stopped
+    ports:
+      - "8123:8123"
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Europe/Moscow  # Укажите свою временную зону
+    network_mode: host  # Используется для лучшей совместимости с устройствами в локальной сети
