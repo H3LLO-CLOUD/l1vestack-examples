@@ -1,9 +1,0 @@
-services:
-  dokuwiki:
-    image: bitnami/dokuwiki
-    container_name: dokuwiki
-    ports:
-      - "8080:80"
-    volumes:
-      - ./dokuwiki_data:/bitnami/dokuwiki
-    restart: unless-stopped
