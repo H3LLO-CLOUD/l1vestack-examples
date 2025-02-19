@@ -1,0 +1,29 @@
+services:
+  ghost:
+    image: ghost:latest
+    restart: unless-stopped
+    environment:
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: example
+      database__connection__database: ghost
+      url: http://localhost:2368
+      NODE_ENV: production
+    ports:
+      - "2368:2368"
+    volumes:
+      - ./ghost_content:/var/lib/ghost/content
+
+  db:
+    image: mysql:9.2
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: ghost
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: ghost
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
