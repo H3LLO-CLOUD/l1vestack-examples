@@ -1,14 +1,6 @@
-# Для развертывания собственных контейнеров на платформе L!vestack вам необходимо:
-# убедиться, что в корне вашего проекта есть Dockerfile. Если его нет, создайте и настройте в соответствии с требованиями вашего приложения.
-# https://docs.docker.com/reference/dockerfile/
-# собрать Docker-образ.
-# https://docs.docker.com/reference/cli/docker/buildx/imagetools/create/
-# запушить образ в ghcr или в другой приватный Registry.
-# вставить ссылку на образ в конфигурационный файл развертывания.
-# прописать  username и password (токен) в конфигурационный файл развертывания.
 # ==========================================================
-# Детальные инструкции доступны по ссылке:
-# https://github.com/H3LLO-CLOUD/l1vestack-examples
+# Инструкции доступны по ссылке:
+# https://github.com/H3LLO-CLOUD/l1vestack-examples/tree/main/templates/private-app
 # ==========================================================
 
 services:
@@ -31,8 +23,10 @@ services:
       - "80:80"
 
   # Подключение Private Docker Registry
+  # ==========================================================
   # Детальная инструкция по созданию токена по ссылке:
-  # https://github.com/H3LLO-CLOUD/l1vestack-examples
+  # https://github.com/H3LLO-CLOUD/l1vestack-examples/tree/main/templates/private-app
+  # ==========================================================
 x-registry:
   "ghcr.io":
     username: "your username by Githab"
