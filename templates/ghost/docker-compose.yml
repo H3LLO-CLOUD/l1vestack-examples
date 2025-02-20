@@ -8,7 +8,9 @@ services:
       database__connection__user: root
       database__connection__password: example
       database__connection__database: ghost
-      url: http://localhost:2368
+      url: http://localhost:2368 #заменить на реальный адрес
+  # подробная инструкция в README.md
+  #
       NODE_ENV: production
     ports:
       - "2368:2368"
