@@ -47,7 +47,7 @@ services:
 
 ### 3 После появления порта в правой панели 
 ![Image](https://github.com/user-attachments/assets/f7d10cbf-3769-46eb-a007-7b22fad18bdb)
-### скопируйте ссылку на 2368 и вставьте ее в url внутри контейнера  "ghost"
+### скопируйте ссылку на порту 2368 и вставьте ее в url внутри контейнера  "ghost"
 ### ПРИМЕР:
 ```
 url: https://ghost.ace.correct.adore.bold.divine.app.l1vestack.ru
