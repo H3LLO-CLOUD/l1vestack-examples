@@ -10,7 +10,7 @@ services:
       database__connection__database: ghost
       url: http://localhost:2368 #заменить на реальный адрес
   # подробная инструкция в README.md
-  #
+  # https://github.com/H3LLO-CLOUD/l1vestack-examples/tree/main/templates/ghost
       NODE_ENV: production
     ports:
       - "2368:2368"
