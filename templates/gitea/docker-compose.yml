@@ -1,20 +1,17 @@
-version: '3.9'
-
 services:
   db:
     image: postgres:15
-    container_name: gitea_db
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: gitea
       POSTGRES_PASSWORD: giteapass
       POSTGRES_DB: gitea
-    volumes:
-      - db_data:/var/lib/postgresql/data
+
 
   gitea:
     image: gitea/gitea:latest
-    container_name: gitea
     restart: unless-stopped
     depends_on:
       - db
@@ -37,9 +34,3 @@ services:
       - GITEA__database__NAME=gitea
       - GITEA__database__USER=gitea
       - GITEA__database__PASSWD=giteapass
-    volumes:
-      - gitea_data:/data
-
-volumes:
-  db_data:
-  gitea_data:
