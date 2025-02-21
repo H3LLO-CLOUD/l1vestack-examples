@@ -1,0 +1,17 @@
+services:
+  jupyter:
+    image: jupyter/base-notebook:latest
+    volumes:
+      - ./work:/home/jovyan/work
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - NB_USER=jovyan
+      - NB_UID=1000
+      - NB_GID=100
+      - CHOWN_HOME=yes
+      - CHOWN_HOME_OPTS='-R'
+      - JUPYTER_PORT=8888  # Явно указываем порт
+    command: >
+      start-notebook.py --ServerApp.token='' --ServerApp.password='' --ServerApp.port=8888 --ServerApp.ip=0.0.0.0
