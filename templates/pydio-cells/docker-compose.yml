@@ -1,0 +1,40 @@
+services:
+  pydio:
+    image: pydio/cells
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/var/cells/data  # Данные Pydio
+      - ./config:/var/cells/config  # Конфигурация
+      - ./cells:/var/cells  # Главная папка
+    environment:
+      - CELLS_NO_TLS=1  # Отключение HTTPS (для тестов)
+      - CELLS_DATABASE_DRIVER=mysql
+      - CELLS_DATABASE_NAME=pydio
+      - CELLS_DATABASE_USER=pydio
+      - CELLS_DATABASE_PASSWORD=secret
+      - CELLS_DATABASE_HOST=mariadb
+      - CELLS_DATABASE_PORT=3306
+    restart: unless-stopped
+
+  mariadb:
+    image: mariadb:10.6
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=pydio
+      - MYSQL_USER=pydio
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=root_secret
+    volumes:
+      - ./db_data:/var/lib/mysql  # Хранение данных БД
+    restart: unless-stopped
+
+#    В настройках при разворачивании на сайте укажи MariaDB:
+#    Хост: mariadb
+#    Порт: 3306
+#    База данных: pydio
+#    Пользователь: pydio
+#    Пароль: secret

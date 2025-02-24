@@ -1,0 +1,9 @@
+services:
+  filebrowser:
+    image: filebrowser/filebrowser
+    ports:
+      - "80:80"
+    volumes:
+      - ./data:/srv  # Папка с файлами
+      - ./config:/config  # Конфигурационные файлы
+    restart: unless-stopped
