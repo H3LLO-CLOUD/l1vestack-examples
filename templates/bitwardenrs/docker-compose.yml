@@ -1,28 +1,12 @@
 services:
-
-  echo-1:
-    image: mendhak/http-https-echo:35
-    environment:
-      - HTTP_PORT=8888
-      - HTTPS_PORT=9999
+  bitwarden:
+    image: bitwardenrs/server
+    restart: unless-stopped
     ports:
-      - "8080:8888"
-      - "8443:9999"
-
-  echo-2:
-    image: mendhak/http-https-echo:35
+      - "8080:80"
+    volumes:
+      - ./bw-data:/data
     environment:
-      - HTTP_PORT=8888
-      - HTTPS_PORT=9999
-    ports:
-      - "8080:8888"
-      - "8443:9999"
-
-  echo-3:
-    image: mendhak/http-https-echo:35
-    environment:
-      - HTTP_PORT=8888
-      - HTTPS_PORT=9999
-    ports:
-      - "8080:8888"
-      - "8443:9999"
+      - SIGNUPS_ALLOWED=true  # Разрешить регистрацию новых пользователей
+      - WEB_VAULT_ENABLED=true  # Включить веб-интерфейс
+      - ADMIN_TOKEN=your_admin_token_here  # Токен для доступа к админке (замените на свой)

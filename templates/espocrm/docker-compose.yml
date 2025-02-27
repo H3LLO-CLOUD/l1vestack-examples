@@ -2,7 +2,6 @@ services:
 
   db:
     image: mariadb:latest
-    container_name: espocrm-db
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: myrootpassword
@@ -11,12 +10,11 @@ services:
       MARIADB_PASSWORD: mypassword
     volumes:
       - ./db_data:/var/lib/mysql
-    networks:
-      - espocrm-network
+    ports:
+      - "3306:3306"
 
   espocrm:
     image: espocrm/espocrm:latest
-    container_name: espocrm
     restart: always
     environment:
       ESPOCRM_DATABASE_HOST: db
@@ -30,13 +28,3 @@ services:
       - ./crm_data:/var/www/html
     ports:
       - "8080:80"
-    networks:
-      - espocrm-network
-
-volumes:
-  db_data:
-  crm_data:
-
-networks:
-  espocrm-network:
-    driver: bridge

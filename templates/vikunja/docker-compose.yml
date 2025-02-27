@@ -1,21 +1,34 @@
 services:
-  tiddlywiki:
-    image: mazzolino/tiddlywiki
-    container_name: tiddlywiki
-    restart: unless-stopped
+
+  vikunja:
+    image: vikunja/vikunja
+    environment:
+      VIKUNJA_SERVICE_PUBLICURL: "{АДРЕС_ИЗ_АДРЕСНОЙ_СТРОКИ_L1VESTACK}"
+      VIKUNJA_DATABASE_HOST: db
+      VIKUNJA_DATABASE_PORT: 3306
+      VIKUNJA_DATABASE_PASSWORD: changeme
+      VIKUNJA_DATABASE_TYPE: mysql
+      VIKUNJA_DATABASE_USER: vikunja
+      VIKUNJA_DATABASE_DATABASE: vikunja
+      VIKUNJA_SERVICE_JWTSECRET: <a_super_ecure_random_secret>
     ports:
-      - "8080:8080"
+      - "3456:3456"
     volumes:
-      - ./tiddlywiki:/var/lib/tiddlywiki
-
-
-#  Auth
-#  Default auth is user / wiki
-#
-#  Simply provide the USERNAME and PASSWORD env variables to customise.
-#
-#  Other settings
-#  If you are in a memory-constrained environment, you can provide the NODE_MEM environment variable to specify the memory ceiling (in MB)
-#
-# To serve the tiddlywiki at a non-root prefix path set the SERVE_URI environment variable: this variable ''must'' start with a forward slash character.
-# The tiddlywiki will be served by the container at http:///${SERVE_URI} - the container initialization script takes care of setting the required host configuration tiddler.
+      - ./files:/app/vikunja/files
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  db:
+    image: mariadb:10
+    ports:
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: supersecret
+      MYSQL_USER: vikunja
+      MYSQL_PASSWORD: changeme
+      MYSQL_DATABASE: vikunja
+    volumes:
+      - ./db:/var/lib/mysql
+    restart: unless-stopped

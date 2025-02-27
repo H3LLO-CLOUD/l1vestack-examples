@@ -1,0 +1,22 @@
+services:
+
+  rocketchat:
+    image: rocketchat/rocket.chat:latest
+    container_name: rocketchat
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URL: "mongodb://mongo:27017/rocketchat"
+      MONGO_OPLOG_URL: "mongodb://mongo:27017/local"
+      ROOT_URL: "{АДРЕС_ИЗ_АДРЕСНОЙ_СТРОКИ_L1VESTACK}"
+      OVERWRITE_SETTING_Show_Setup_Wizard: "false"  # Отключаем мастер настройки
+    ports:
+      - "3000:3000"
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db

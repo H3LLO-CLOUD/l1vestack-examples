@@ -1,0 +1,34 @@
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_DATABASE: wiki
+      MYSQL_USER: wikijs
+      MYSQL_PASSWORD: wikijsrocks
+      MYSQL_ROOT_PASSWORD: rootpassword  # Обязательно указываем root-пароль
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "wikijs", "-pwikijsrocks"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+
+  wiki:
+    image: ghcr.io/requarks/wiki:2
+    container_name: wikijs
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_TYPE: mariadb
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: wikijs
+      DB_PASS: wikijsrocks
+      DB_NAME: wiki
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
