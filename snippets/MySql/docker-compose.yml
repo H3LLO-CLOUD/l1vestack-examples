@@ -1,0 +1,20 @@
+services:
+  mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: example    # Основной пароль для подключения к БД
+      MYSQL_DATABASE: example         # Имя основной базы данных
+      MYSQL_USER: user                # Логин для подключения к БД
+      MYSQL_PASSWORD: password        # Пароль для пользователя
+    volumes:
+      - ./db_data:/var/lib/mysql      # Сохранение данных БД на хосте
+    ports:
+      - "3306:3306"                  # Порт MySQL (не рекомендуется открывать публичный доступ)
+
+  # Опционально: сервис Adminer для быстрого доступа к БД
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"                  # Доступ к Adminer по адресу http://localhost:8080
