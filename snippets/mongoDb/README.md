@@ -44,7 +44,7 @@ services: # (Оставьте этот блок только в первом к�
     restart: unless-stopped
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass
       ME_CONFIG_MONGODB_SERVER: mongo
     ports:
       - "8081:8081"                        # Доступ к Mongo Express по адресу http://localhost:8081

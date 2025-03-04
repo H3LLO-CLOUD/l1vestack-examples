@@ -4,10 +4,10 @@ services: # (Оставьте этот блок только в первом к�
     image: mariadb:latest
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: example
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: example
+      MARIADB_DATABASE: example
+      MARIADB_USER: user
+      MARIADB_PASSWORD: password
     volumes:
       - ./mariadb_data:/var/lib/mysql
     ports:
