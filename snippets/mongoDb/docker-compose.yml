@@ -1,0 +1,23 @@
+services: # (Оставьте этот блок только в первом контейнере, в последующих – подключайтесь к уже запущенному сервису)
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin    # Имя администратора базы данных
+      MONGO_INITDB_ROOT_PASSWORD: example  # Пароль администратора
+      MONGO_INITDB_DATABASE: example       # Имя создаваемой базы данных (необязательно)
+    volumes:
+      - ./mongo_data:/data/db              # Сохранение данных БД на хосте
+    ports:
+      - "27017:27017"                      # Порт MongoDB (не рекомендуется открывать публичный доступ)
+
+  # Опционально: сервис Mongo Express для удобного доступа к БД
+  mongo-express:
+    image: mongo-express:latest
+    restart: unless-stopped
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_SERVER: mongo
+    ports:
+      - "8081:8081"                        # Доступ к Mongo Express по адресу http://localhost:8081

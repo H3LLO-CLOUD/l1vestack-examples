@@ -1,4 +1,4 @@
-services:
+services: # (Оставьте этот блок только в первом контейнере, в последующих – подключайтесь к уже запущенному сервису)
   bitwarden:
     image: bitwardenrs/server
     container_name: bitwarden

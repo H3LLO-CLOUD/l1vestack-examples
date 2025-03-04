@@ -1,4 +1,4 @@
-services:
+services: # (Оставьте этот блок только в первом контейнере, в последующих – подключайтесь к уже запущенному сервису)
   mysql:
     image: mysql:latest
     restart: unless-stopped
@@ -12,9 +12,9 @@ services:
     ports:
       - "3306:3306"                  # Порт MySQL (не рекомендуется открывать публичный доступ)
 
-  # Опционально: сервис Adminer для быстрого доступа к БД
+  # Опционально: сервис adminer для быстрого доступа к БД
   adminer:
     image: adminer:latest
     restart: unless-stopped
     ports:
-      - "8080:8080"                  # Доступ к Adminer по адресу http://localhost:8080
+      - "8080:8080"                  # Доступ к adminer по адресу http://localhost:8080

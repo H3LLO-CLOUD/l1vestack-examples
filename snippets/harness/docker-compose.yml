@@ -1,4 +1,4 @@
-services:
+services: # (Оставьте этот блок только в первом контейнере, в последующих – подключайтесь к уже запущенному сервису)
   harness:
     image: harness/harness
     container_name: opensource
