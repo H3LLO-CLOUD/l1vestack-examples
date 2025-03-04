@@ -1,5 +1,12 @@
 services: # (Оставьте этот блок только в первом контейнере, в последующих – подключайтесь к уже запущенному сервису)
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: admin               # Имя пользователя для входа в Grafana
+      GF_SECURITY_ADMIN_PASSWORD: admin_password  # Пароль для пользователя admin
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-piechart-panel  # Опционально: установка плагинов
+    volumes:
+      - ./grafana_data:/var/lib/grafana          # Сохранение данных Grafana на хосте
     ports:
       - "3000:3000"
