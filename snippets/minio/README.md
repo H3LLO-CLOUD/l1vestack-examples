@@ -26,7 +26,7 @@
 ### Пример `docker-compose.yml` для MinIO:
 
 ```yaml
-services:
+services: # (Оставьте этот блок только в первом контейнере, в последующих – подключайтесь к уже запущенному сервису)
   minio:
     image: minio/minio
     container_name: minio

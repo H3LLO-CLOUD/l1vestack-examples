@@ -22,3 +22,5 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpresspassword
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
