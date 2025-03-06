@@ -43,12 +43,13 @@ services: # (Оставьте этот блок только в первом к�
     image: mongo-express:latest
     restart: unless-stopped
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: pass
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin # Логин при входе в админ.панель
+      MONGO_INITDB_ROOT_PASSWORD: example
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass  # Пароль при входе в админ.панель
       ME_CONFIG_MONGODB_SERVER: mongo
     ports:
-      - "8081:8081"                        # Доступ к Mongo Express по адресу http://localhost:8081
+      - "8081:8081"                         # Доступ к Mongo Express по адресу, выданному платформой L1vestack
 ```
 ## 4. Подключитесь к базе данных
-Используйте клиент MongoDB Compass, Robo 3T или Mongo Express для подключения к базе данных.
+Используйте клиент  Mongo Express для подключения к базе данных.
 Чтобы установить соединение, примените параметры, заданные в переменных окружения.

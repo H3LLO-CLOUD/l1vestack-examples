@@ -1,7 +1,3 @@
-networks:
-  backend:
-    driver: bridge
-
 services: # (Оставьте этот блок только в первом контейнере, в последующих – подключайтесь к уже запущенному сервису)
   mongo:
     image: mongo:latest
@@ -14,18 +10,15 @@ services: # (Оставьте этот блок только в первом к�
       - ./mongo_data:/data/db              # Сохранение данных БД на хосте
     ports:
       - "27017:27017"                      # Порт MongoDB (не рекомендуется открывать публичный доступ)
-    networks:
-      - backend
 
   # Опционально: сервис Mongo Express для удобного доступа к БД
   mongo-express:
     image: mongo-express:latest
     restart: unless-stopped
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: pass
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin # Логин при входе в админ.панель
+      MONGO_INITDB_ROOT_PASSWORD: example
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass  # Пароль при входе в админ.панель
       ME_CONFIG_MONGODB_SERVER: mongo
     ports:
-      - "8081:8081"                        # Доступ к Mongo Express по адресу http://localhost:8081
-    networks:
-      - backend
+      - "8081:8081"
